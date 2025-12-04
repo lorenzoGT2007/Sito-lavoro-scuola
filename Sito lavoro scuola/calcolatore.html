@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Calcolatore </title>
+    <script> //per poter utilizzare javascript
+        const ListaProvince = { //array, con coordinate cartesiane assegnate a un identificatore 
+            "AG": [407.7, -776.5], "AL": [11.2, 67.2], "AN": [403.0, -76.7], "AO": [-93.0, 158.7],
+            "AP": [407.5, -161.6], "AQ": [394.0, -217.2], "AR": [272.1, -93.5], "AT": [-21.9, 65.8],
+            "AV": [504.8, -376.6], "BA": [671.0, -352.2], "BAT": [624.2, -331.0], "BG": [95.2, 154.1],
+            "BI": [-34.3, 139.4], "BL": [298.9, 203.0], "BN": [504.0, -352.8], "BO": [228.9, 20.8],
+            "BR": [756.6, -407.4], "BS": [139.4, 136.8], "BZ": [230.1, 243.3], "CA": [50.5, -564.4],
+            "CB": [495.0, -304.7], "CE": [468.1, -359.0], "CH": [455.2, -217.2], "CL": [446.5, -756.4],
+            "CN": [-74.6, 8.5], "CO": [48.6, 166.7], "CR": [123.8, 92.0], "CS": [621.8, -556.0],
+            "CT": [528.2, -754.8], "CZ": [648.6, -599.7], "EN": [464.0, -748.1], "FC": [285.8, -9.3],
+            "FE": [251.1, 58.8], "FG": [565.1, -315.6], "FI": [222.0, -59.7], "FM": [419.2, -127.4],
+            "FR": [389.6, -296.1], "GE": [36.0, 12.0], "GO": [411.2, 181.2], "GR": [210.6, -171.4],
+            "IM": [-36.0, -46.0], "IS": [459.8, -300.6], "KR": [691.0, -579.9], "LC": [72.8, 171.8],
+            "LE": [775.1, -439.0], "LI": [146.4, -83.6], "LO": [81.8, 111.2], "LT": [353.8, -315.2],
+            "LU": [162.2, -51.5], "MB": [63.4, 141.8], "MC": [397.8, -111.9], "ME": [565.9, -678.7],
+            "MI": [56.7, 128.4], "MN": [185.2, 94.3], "MO": [195.6, 37.7], "MS": [132.9, -30.1],
+            "MT": [649.9, -404.2], "NA": [463.0, -383.6], "NO": [11.4, 126.2], "NU": [67.7, -442.5],
+            "OR": [8.8, -488.8], "PA": [390.5, -687.3], "PC": [97.0, 82.6], "PD": [272.4, 122.1],
+            "PE": [458.7, -204.9], "PG": [312.6, -132.6], "PI": [153.7, -65.5], "PN": [334.4, 182.4],
+            "PO": [209.3, -47.6], "PR": [147.8, 55.0], "PT": [195.0, -41.5], "PU": [354.9, -43.8],
+            "PV": [54.5, 97.3], "PZ": [586.2, -407.0], "RA": [297.8, 12.3], "RC": [573.4, -687.8],
+            "RE": [172.0, 43.4], "RG": [499.8, -819.0], "RI": [350.6, -211.3], "RM": [320.2, -268.0],
+            "RN": [327.2, -27.5], "RO": [264.9, 84.9], "SA": [503.0, -402.4], "SI": [228.1, -109.8],
+            "SO": [111.4, 206.6], "SP": [108.0, -22.0], "SR": [544.5, -802.8], "SS": [6.4, -397.4],
+            "SU": [3.4, -570.5], "SV": [0.0, 0.0], "TA": [699.9, -425.3], "TE": [417.5, -183.0],
+            "TN": [211.3, 195.4], "TO": [-63.5, 84.7], "TP": [322.8, -698.4], "TR": [333.4, -193.1],
+            "TS": [423.2, 148.9], "TV": [300.9, 151.0], "UD": [380.8, 195.7], "VA": [27.6, 167.6],
+            "VCO": [5.7, 179.2], "VC": [-4.6, 112.8], "VE": [308.3, 125.7], "VI": [244.8, 138.0],
+            "VR": [200.9, 124.1], "VT": [290.0, -209.8], "VV": [609.7, -624.9]
+        };
+
+
+
+
+
+
+
+        function Calcoli() { //funzione per i calcoli
+            const Provincia1 = document.getElementById("MenuATendina1").value; //costante per il valore nel primo menu
+            const Provincia2 = document.getElementById("MenuATendina2").value; //secondo valore
+
+            if (Provincia1 && Provincia2 && (Provincia1 != Provincia2)) {         //se entrambe sono selezionate e diverse 
+                const [x1, y1] = ListaProvince[Provincia1]; //costanti delle coordinate delle province selezionate
+                const [x2, y2] = ListaProvince[Provincia2];
+
+                const xDiff = x2 - x1; //differenza nelle ascisse
+                const yDiff = y2 - y1; //differenza nelle ordinate
+
+                const Distanza = (Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2))) * 1.212; //teorema di pitagora per sapere la distanza vettoriale tra i due punti, moltipglicato per il fattore di scala in modo da riportare un valore in km
+
+
+
+                let NomeMezzo; //variabile nome mezzo di trasporto
+                let PrezzoMezzo; //al km. 0.30 treno, 0.21 macchina, 0.10 aereo
+
+                if (Distanza < 200) {  //mezzo di trasporto più adeguato in base alla distanza
+                    PrezzoMezzo = 0.21;
+                    NomeMezzo = "Macchina";
+                } else if (Distanza < 400) {
+                    PrezzoMezzo = 0.30;
+                    NomeMezzo = "Treno";
+                } else {
+                    PrezzoMezzo = 0.10;
+                    NomeMezzo = "Aereo";
+                }
+
+                document.getElementById("risultatiContainer").style.display = "block"; //mostra il blocco
+                //scrittura delle stringhe + variabili nei diversi ID
+                document.getElementById("distanza").innerText = `Distanza lineare: ${Distanza.toFixed(2)}Km`;//${} mette la variabile dentro una stringa, .toFixed(2) arrotonda a due punti decimali
+                document.getElementById("mezzo").innerHTML = `Miglior mezzo di trasporto: <strong>${NomeMezzo}</strong>.<br>Prezzo al Km: ${PrezzoMezzo} Euro`; //mezzo di trasporto più adeguato
+                document.getElementById("prezzo").innerText = `Prezzo stimato: ${(Distanza * PrezzoMezzo).toFixed(2)} Euro`; //prezzo totale in base a medie stimate per il 2023 di prezzo per km
+            }
+            else //se sono uguali
+            {
+                alert("Seleziona due province diverse per calcolare la distanza.");
+            }
+        }
+
+
+
+
+
+
+
+        function NomiProvinceMenu() { //funzione per i nomi delle province
+            const MenuATendina1 = document.getElementById("MenuATendina1"); //costante che indica il primo menu a tendina 
+            const MenuATendina2 = document.getElementById("MenuATendina2"); //costante per il secondo
+
+            for (const provincia in ListaProvince) { //il loop viene ripetuto per ogni iterazione di "const provincia in ListaProvince" che assegna almeno una volta a "provincia" i valori in array listaprovince
+                const opzione1 = document.createElement("option"); //crea un elemnto opzione html per inserire i nomi delle province
+                const opzione2 = document.createElement("option");
+                opzione1.value = provincia;
+                opzione1.text = provincia;
+                opzione2.value = provincia; //valore usato nei calcoli non visibile dall'utente
+                opzione2.text = provincia; //nome visto
+
+                MenuATendina1.appendChild(opzione1); //la provincia viene scritta nel primo menu
+                MenuATendina2.appendChild(opzione2); //stesso per il secondo
+            }
+        }
+        document.addEventListener("DOMContentLoaded", NomiProvinceMenu); //aspetta che la pagina carichi prima di listare tutte le province richiamando NomiProvinceMenu
+
+    </script>
+    <link rel="stylesheet" href="stile.css">
+</head>
+
+
+
+
+
+
+<!-- sezione principale -->
+
+<body>
+
+    <header>
+        <img src="images/logo.png" alt="Logo" class="header-logo">
+        <h1>BombusTrip</h1>
+    </header>
+
+
+
+
+
+    <div class="testo">
+        <div class="contenutoPrincipale">
+            <div class="blocco">
+                <div class="blocco">
+                    <label for="MenuATendina1">Seleziona la provincia di <strong>partenza:</strong></label>
+                    <select class="menuTendina" id="MenuATendina1"></select> <!--creazione menu e identificatore-->
+                </div>
+                <div class="blocco">
+                    <label for="MenuATendina2">Seleziona la provincia di <strong>meta:</strong></label>
+                    <select class="menuTendina" id="MenuATendina2"></select>
+                </div>
+
+                <button class="bottone-link" onclick="Calcoli()">Calcola</button>
+                <!-- quando premuto il pulsante viene calcolata distanza, prezzo ecc... richiamando la funzione -->
+
+                <div id="risultatiContainer" style="display: none;">
+                    <div class="bloccoRisultati" id="risultati">
+                        <p id="distanza"></p>
+                        <p id="mezzo"></p>
+                        <p id="prezzo"></p>
+                    </div>
+                </div>
+            </div>
+
+            <img class="immagine" src="images/mappa_province.jpg" alt="mappa">
+
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p> Torna alla home | <a href="SitoPrincipale.html" style="color: rgb(174, 174, 255)">HOME</a></p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+html,
+body {
+    background-color: #F3F2F3;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    padding: 15px;
+
+    font-family: "Times New Roman", Times, serif;
+
+}
+
+.header-logo {
+    height: 40px;
+    width: auto;
+    margin: 2%;
+}
+
+.menu {
+    margin-left: auto;
+    margin-right: 4%;
+    font-size: 25px;
+    color: #ffffff;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.banner {
+    Margin-bottom: 20px;
+    height: 300px;
+    /* altezza del banner */
+    width: 100%;
+    /* flexbox per il testo */
+    display: flex;
+    justify-content: center;
+    /* centra orizzontalmente */
+    align-items: center;
+    /* centra verticalmente */
+    position: relative;
+    object-fit: cover;
+    /* mantiene le proporzioni dell'immagine quando la pagina viene scalata */
+}
+
+.banner-text {
+    position: absolute;
+    left: 5%;
+    color: white;
+    justify-content: center;
+    margin-right: auto;
+    font-size: 35px;
+    font-family: "Times New Roman", Times, serif;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+.contenutoPrincipale {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%
+}
+
+.boxMain {
+    display: block;
+}
+
+.testoPrincipale {
+    font-size: 23px;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+    margin: 5%;
+}
+
+.immagine {
+    background-color: rgba(0, 0, 0, 0.06);
+    width: 50%;
+    object-fit: cover;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+
+.bottone-link {
+    width: 80%;
+    margin: 5%;
+    display: block;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    /* togli sottolineatura link */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    /* cursore a mano */
+    font-size: 20px;
+}
+
+.bottone-link:hover {
+    background-color: #595a5b;
+}
+
+
+footer {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.blocco {
+    width: 100%;
+    display: block;
+    margin-bottom: 5%;
+    margin-left: 5%;
+}
+
+.testo {
+
+    font-size: 30px;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+    margin: 10px;
+}
+
+.menuTendina {
+    margin: 5%;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.menuTendina:hover {
+    background-color: #595a5b;
+}
+
+.bloccoRisultati {
+    background-color: rgba(0, 0, 0, 0.131);
+    border-radius: 15px;
+    padding: 20px;
+    margin-right: 20px;
+    text-align: left;
+    font-size: 25px;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+}
+
+
+@media (max-width: 768px) {
+
+    /* schermi piccoli come smartphone */
+    .contenutoPrincipale {
+        flex-direction: column-reverse;
+        /*testo sotto immagine in flexbox*/
+        align-items: center;
+    }
+
+    .immagine {
+        width: 80%;
+    }
+}
