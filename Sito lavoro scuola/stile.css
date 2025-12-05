@@ -36,6 +36,7 @@ header {
 }
 
 .banner {
+    Margin-top: 8px;
     Margin-bottom: 20px;
     height: 300px;
     /* altezza del banner */
